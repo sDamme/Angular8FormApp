@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div style="width:100%">
+      <div class="margin-20">
+        <h4>Add new post</h4>
+      </div>
+      <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control" formControlName="title">
+          <small  class="text-danger">
+              Name is required (minimum 5 characters).
+            </small>
+                   <!--addresses-->
+        <div formArrayName="subtopics">
+            <div *ngFor="let subtopic of myForm.controls.subtopics.controls; let i=index" class="panel panel-default">
+              <div class="panel-heading">
+                <span>Subtopic {{i + 1}}</span>
+                <span class="pull-right" *ngIf="myForm.controls.subtopics.controls.length" (click)="removeSubTopic(i)"><fa name="times-circle" size="2x" style="color:red;"></fa></span>
+                
+              </div>
+              <div class="panel-body" [formGroupName]="i">
+                <subtopic [group]="myForm.controls.subtopics.controls[i]"></subtopic>
+              </div>
+            </div>
+          </div>
+          <div class="margin-20">
+            <button (click)="addSubTopic()" class="btn btn-primary pull-left">
+                Add SubTopic  <fa name="plus-square" size="2x"></fa>
+            </button >
+
+                
+          
+            </div>
+    
+            <div class="margin-20">
+              <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Submit</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+       
+
+        <div class="margin-20">
+          <div>myForm details:-</div>
+          <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+          <pre>form value: <br>{{myForm.value | json}}</pre>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div [formGroup]="subtopicForm">
+    <div class="form-group col-xs-6">
+        <label>SubTitle</label>
+        <input type="text" class="form-control" formControlName="subTitle">
+        <small [hidden]="subtopicForm.controls.subTitle.valid" class="text-danger">
+            SubTitle is required
+        </small>
+    </div>
+    <div class="form-group col-xs-6">
+        <label>SubInfo</label>
+        <input type="text" class="form-control" formControlName="subInfo">
+    </div>
+</div>
